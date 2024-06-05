@@ -19,7 +19,7 @@ public class Vendor {
     private String name;
 
     @Nonnull
-    @MappedCollection(idColumn = "id")
+    @MappedCollection(idColumn = "vendor_id")
     private Set<Product> product;
 
     @PersistenceCreator

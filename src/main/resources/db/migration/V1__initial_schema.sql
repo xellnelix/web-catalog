@@ -23,6 +23,7 @@ create table "user"
 
 create table cart
 (
+    id bigserial not null primary key,
     user_id bigint not null references "user"(id),
     product_id bigint not null references product(id)
 );

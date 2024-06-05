@@ -3,6 +3,7 @@ package otus.xellnelix.entity;
 import jakarta.annotation.Nonnull;
 import jdk.jfr.Description;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceCreator;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -30,6 +31,7 @@ public class Product {
     @MappedCollection(idColumn = "product_id")
     private Set<Cart> cart;
 
+    @PersistenceCreator
     public Product(Long id, String name, Long vendorId, Integer quantity, BigDecimal price, Set<Cart> cart) {
         this.id = id;
         this.name = name;
