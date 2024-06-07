@@ -20,30 +20,24 @@ public class Product {
     private String name;
 
     @Nonnull
-    private Long vendorId;
-
-    @Nonnull
     private Integer quantity;
 
     @Nonnull
     private BigDecimal price;
 
-    @MappedCollection(idColumn = "product_id")
-    private Set<Cart> cart;
-
     @PersistenceCreator
-    public Product(Long id, String name, Long vendorId, Integer quantity, BigDecimal price, Set<Cart> cart) {
+    public Product(Long id, String name, Integer quantity, BigDecimal price) {
         this.id = id;
         this.name = name;
-        this.vendorId = vendorId;
         this.quantity = quantity;
         this.price = price;
-        this.cart = cart;
     }
 
-    public Product(String name, Long vendorId, Integer quantity, BigDecimal price, Set<Cart> cart) {
-        this(null, name, vendorId, quantity, price, cart);
+    public Product(String name, Integer quantity, BigDecimal price) {
+        this(null, name, quantity, price);
     }
+
+    public Product() {}
 
     public Long getId() {
         return id;
@@ -61,14 +55,6 @@ public class Product {
         this.name = name;
     }
 
-    public Long getVendorId() {
-        return vendorId;
-    }
-
-    public void setVendorId(Long vendorId) {
-        this.vendorId = vendorId;
-    }
-
     public Integer getQuantity() {
         return quantity;
     }
@@ -83,13 +69,5 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Set<Cart> getCart() {
-        return cart;
-    }
-
-    public void setCart(Set<Cart> cart) {
-        this.cart = cart;
     }
 }

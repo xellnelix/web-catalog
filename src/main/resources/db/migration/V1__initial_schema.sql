@@ -1,16 +1,9 @@
-create table vendor
-(
-    id bigserial not null primary key,
-    name varchar(50) not null
-);
-
 create table product
 (
     id bigserial not null primary key,
     name varchar(100) not null,
-    vendor_id bigint not null references vendor(id),
     quantity int not null default 0,
-    price money not null default 0.0
+    price numeric(9,2) not null default 0.0
 );
 
 create table "user"

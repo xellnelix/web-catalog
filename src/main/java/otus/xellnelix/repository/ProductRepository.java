@@ -11,6 +11,4 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends CrudRepository<Product, Long> {
-    @Query("select * from product where vendor_id = (select id from vendor where name = :name)")
-    List<Product> findByVendorName(@Param("name") String name);
 }
