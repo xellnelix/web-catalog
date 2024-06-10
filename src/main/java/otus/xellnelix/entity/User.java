@@ -4,7 +4,6 @@ import jakarta.annotation.Nonnull;
 import jdk.jfr.Description;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table(name = "user", schema = "public")
@@ -22,20 +21,19 @@ public class User {
     @Nonnull
     private String authority;
 
-    @MappedCollection(idColumn = "user_id")
-    private Cart cart;
-
     @PersistenceCreator
-    public User(Long id, String login, String password, String authority, Cart cart) {
+    public User(Long id, String login, String password, String authority) {
         this.id = id;
         this.login = login;
         this.password = password;
         this.authority = authority;
-        this.cart = cart;
     }
 
-    public User(String login, String password, String authority, Cart cart) {
-        this(null, login, password, authority, cart);
+    public User(String login, String password) {
+        this(null, login, password, null);
+    }
+
+    public User() {
     }
 
     public Long getId() {
@@ -68,13 +66,5 @@ public class User {
 
     public void setAuthority(String authority) {
         this.authority = authority;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 }

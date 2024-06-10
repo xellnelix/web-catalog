@@ -1,17 +1,18 @@
 package otus.xellnelix.service;
 
-import otus.xellnelix.dto.ProductDto;
+import otus.xellnelix.dto.output.ProductResponseDto;
 import otus.xellnelix.entity.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ProductService {
-    void saveProduct(Product product);
+    ProductResponseDto saveProduct(Product product);
 
-    ProductDto updateProduct(Product product, Long id);
+    ProductResponseDto updateProduct(Product product, Long id);
 
-    ProductDto findById(Long id);
+    ProductResponseDto findById(Long id);
 
-    List<Product> findAll();
+    ProductResponseDto deleteById(Long id);
+
+    List<ProductResponseDto> findAll();
 }

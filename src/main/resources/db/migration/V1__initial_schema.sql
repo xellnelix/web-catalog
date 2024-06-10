@@ -1,7 +1,7 @@
 create table product
 (
     id bigserial not null primary key,
-    name varchar(100) not null,
+    name varchar(100) not null unique,
     quantity int not null default 0,
     price numeric(9,2) not null default 0.0
 );
@@ -9,9 +9,9 @@ create table product
 create table "user"
 (
     id bigserial not null primary key,
-    login varchar(100) not null,
+    login varchar(100) not null unique,
     password varchar(100) not null,
-    authority varchar(100) not null
+    authority varchar(100) default 'ROLE_USER' not null
 );
 
 create table cart

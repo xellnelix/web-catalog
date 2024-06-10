@@ -24,7 +24,8 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	runtimeOnly("org.flywaydb:flyway-database-postgresql:10.10.0")
-	implementation("org.modelmapper:modelmapper:3.2.0")
+	implementation("org.mapstruct:mapstruct:1.5.5.Final")
+	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 	implementation("ch.qos.logback:logback-classic")
 
 

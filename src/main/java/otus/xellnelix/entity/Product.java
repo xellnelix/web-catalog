@@ -4,11 +4,9 @@ import jakarta.annotation.Nonnull;
 import jdk.jfr.Description;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.PersistenceCreator;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Table(name = "product", schema = "public")
 @Description("Товар")

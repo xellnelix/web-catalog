@@ -1,19 +1,20 @@
 package otus.xellnelix.mapper;
 
-import org.modelmapper.ModelMapper;
-import otus.xellnelix.dto.ProductDto;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import otus.xellnelix.dto.input.ProductCreateDto;
+import otus.xellnelix.dto.output.ProductResponseDto;
 import otus.xellnelix.entity.Product;
 
-import java.util.Optional;
+import java.util.List;
 
-public class ProductMapper {
-    private static final ModelMapper modelMapper = new ModelMapper();
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+public interface ProductMapper {
+    ProductResponseDto toProductResponseDto(Product product);
 
-    public static ProductDto toDto(Optional<Product> product) {
-        return modelMapper.map(product, ProductDto.class);
-    }
+    List<ProductResponseDto> toProductResponseDtoList(List<Product> productList);
 
-    public static Product toEntity(ProductDto productDto) {
-        return modelMapper.map(productDto, Product.class);
-    }
+    @Mapping(target = "id", ignore = true)
+    Product toProduct(ProductCreateDto productCreateDto);
 }
