@@ -6,7 +6,7 @@ import otus.xellnelix.entity.Product;
 import java.util.List;
 
 public interface ProductService {
-    ProductResponseDto saveProduct(Product product);
+    ProductResponseDto save(Product product);
 
     ProductResponseDto updateProduct(Product product, Long id);
 

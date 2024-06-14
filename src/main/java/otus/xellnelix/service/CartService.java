@@ -9,4 +9,8 @@ public interface CartService {
     CartResponseDto save(Cart cart);
 
     List<CartResponseDto> findAll();
+
+    CartResponseDto findById(Long id);
+
+    CartResponseDto findByUserId(Long id);
 }

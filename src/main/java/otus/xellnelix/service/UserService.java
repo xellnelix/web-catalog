@@ -7,7 +7,7 @@ import otus.xellnelix.entity.User;
 import java.util.List;
 
 public interface UserService {
-    void register(User user);
+    UserResponseDto save(User user);
 
     List<UserResponseDto> findAll();
 

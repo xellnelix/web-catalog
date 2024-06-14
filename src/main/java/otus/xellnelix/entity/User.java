@@ -1,37 +1,25 @@
 package otus.xellnelix.entity;
 
-import jakarta.annotation.Nonnull;
+import jakarta.persistence.*;
 import jdk.jfr.Description;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceCreator;
-import org.springframework.data.relational.core.mapping.Table;
 
+@Entity
 @Table(name = "user", schema = "public")
 @Description("Пользователь")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
+    @SequenceGenerator(name = "user_id_seq", sequenceName = "user_id_seq", allocationSize = 1)
     private Long id;
 
-    @Nonnull
+    @Column(name = "login")
     private String login;
 
-    @Nonnull
+    @Column(name = "password")
     private String password;
 
-    @Nonnull
+    @Column(name = "authority")
     private String authority;
-
-    @PersistenceCreator
-    public User(Long id, String login, String password, String authority) {
-        this.id = id;
-        this.login = login;
-        this.password = password;
-        this.authority = authority;
-    }
-
-    public User(String login, String password) {
-        this(null, login, password, null);
-    }
 
     public User() {
     }

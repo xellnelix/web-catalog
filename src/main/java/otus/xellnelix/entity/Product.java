@@ -1,41 +1,37 @@
 package otus.xellnelix.entity;
 
-import jakarta.annotation.Nonnull;
+import jakarta.persistence.*;
 import jdk.jfr.Description;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceCreator;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 
-@Table(name = "product", schema = "public")
+@Entity
+@Table(name = "product")
 @Description("Товар")
 public class Product {
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_id_seq")
+    @SequenceGenerator(name = "product_id_seq", sequenceName = "product_id_seq", allocationSize = 1)
     private Long id;
 
-    @Nonnull
+    @Column(name = "name")
     private String name;
 
-    @Nonnull
+    @Column(name = "quantity")
     private Integer quantity;
 
-    @Nonnull
+    @Column(name = "price")
     private BigDecimal price;
 
-    @PersistenceCreator
-    public Product(Long id, String name, Integer quantity, BigDecimal price) {
-        this.id = id;
-        this.name = name;
-        this.quantity = quantity;
-        this.price = price;
-    }
+    @Column(name = "cart_id")
+    private Long cartId;
 
-    public Product(String name, Integer quantity, BigDecimal price) {
-        this(null, name, quantity, price);
-    }
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cart_id", insertable = false, updatable = false)
+    private Cart cart;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Long getId() {
         return id;
@@ -67,5 +63,25 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Long getCartId() {
+        return cartId;
+    }
+
+    public void setCartId(Long cartId) {
+        this.cartId = cartId;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public BigDecimal calcAmount() {
+        return price.multiply(BigDecimal.valueOf(quantity));
     }
 }

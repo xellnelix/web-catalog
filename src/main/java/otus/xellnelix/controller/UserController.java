@@ -18,32 +18,32 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    @PostMapping("/user/add")
-    public void addUser(@RequestBody UserCreateDto userCreateDto) {
-        userService.register(userMapper.toUser(userCreateDto));
+    @PostMapping("/users/add")
+    public UserResponseDto addUser(@RequestBody UserCreateDto userCreateDto) {
+        return userService.save(userMapper.toUser(userCreateDto));
     }
 
-    @GetMapping("/user/all")
+    @GetMapping("/users")
     public List<UserResponseDto> findAllProduct() {
         return userService.findAll();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public UserResponseDto findUserById(@PathVariable Long id) {
         return userService.findUserById(id);
     }
 
-    @GetMapping("/user")
-    public UserResponseDto findUserByLogin(@RequestParam String login) {
+    @GetMapping("/users/find-user/{login}")
+    public UserResponseDto findUserByLogin(@PathVariable String login) {
         return userService.findByLogin(login);
     }
 
-    @PatchMapping("/user/update/{login}")
+    @PatchMapping("/users/{login}")
     public UserResponseDto update(@PathVariable String login, @RequestBody UserCreateDto userCreateDto) {
         return userService.updateByLogin(login, userMapper.toUser(userCreateDto));
     }
 
-    @DeleteMapping("/user/delete/{id}")
+    @DeleteMapping("/users/{id}")
     public UserResponseDto delete(@PathVariable Long id) {
         return userService.delete(id);
     }

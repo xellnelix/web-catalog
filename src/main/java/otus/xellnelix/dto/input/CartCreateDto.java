@@ -1,10 +1,9 @@
 package otus.xellnelix.dto.input;
 
-import otus.xellnelix.dto.output.ProductResponseDto;
-import otus.xellnelix.dto.output.UserResponseDto;
+import java.util.List;
 
 public record CartCreateDto(
-        UserResponseDto user,
-        ProductResponseDto product
+        Long userId,
+        List<Long> productId
 ) {
 }

@@ -25,6 +25,16 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartResponseDto> findAll() {
-        return cartMapper.toCartResponseDtoList((List<Cart>) cartRepository.findAll());
+        return cartMapper.toCartResponseDtoList(cartRepository.findAll());
+    }
+
+    @Override
+    public CartResponseDto findById(Long id) {
+        return cartMapper.toCartResponseDto(cartRepository.findById(id).orElseThrow());
+    }
+
+    @Override
+    public CartResponseDto findByUserId(Long id) {
+        return cartMapper.toCartResponseDto(cartRepository.findByUserId(id));
     }
 }

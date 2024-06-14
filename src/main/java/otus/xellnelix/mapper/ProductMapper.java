@@ -15,6 +15,11 @@ public interface ProductMapper {
 
     List<ProductResponseDto> toProductResponseDtoList(List<Product> productList);
 
+    List<Product> map(List<Long> value);
+
+    @Mapping(target = "id", source = "value")
+    Product map(Long value);
+
     @Mapping(target = "id", ignore = true)
     Product toProduct(ProductCreateDto productCreateDto);
 }

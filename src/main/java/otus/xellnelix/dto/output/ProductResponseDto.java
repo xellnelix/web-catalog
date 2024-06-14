@@ -6,6 +6,7 @@ public record ProductResponseDto(
         Long id,
         String name,
         Integer quantity,
-        BigDecimal price
+        BigDecimal price,
+        Long cartId
 ) {
 }
